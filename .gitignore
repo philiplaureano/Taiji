@@ -1,0 +1,7 @@
+_Resharper.*
+bin
+Debug
+debug
+*resharper.user
+*.vsspcc
+*.suo

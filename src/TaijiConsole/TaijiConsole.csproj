@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<PropertyGroup>
+  <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{0A43EE4F-50DA-478C-A6A0-9801D699F447}</ProjectGuid>
     <OutputType>Exe</OutputType>
@@ -40,6 +40,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LinFu.Core, Version=2.2.0.6161, Culture=neutral, PublicKeyToken=a4c63a184389506f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\LinFu.Core.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -48,9 +52,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdapterBuilder.cs" />
+    <Compile Include="AddAdapterConstructor.cs" />
+    <Compile Include="AddAdapterMethod.cs" />
+    <Compile Include="AddInterfaceMethod.cs" />
+    <Compile Include="AddInterfaceMethodIfMethodNotFound.cs" />
     <Compile Include="AssemblyInfo.cs" />
-		<Compile Include="HelloWorld.cs" />
-	</ItemGroup>
+    <Compile Include="BaseDependencyScope.cs" />
+    <Compile Include="CreateAdapterType.cs" />
+    <Compile Include="CreateInterfaceType.cs" />
+    <Compile Include="DependencyExtractor.cs" />
+    <Compile Include="DependencyScope.cs" />
+    <Compile Include="DependencyUpdater.cs" />
+    <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="IAdapterBuilder.cs" />
+    <Compile Include="IAdaptParameter.cs" />
+    <Compile Include="IAddAdapterConstructor.cs" />
+    <Compile Include="IAddAdapterMethod.cs" />
+    <Compile Include="IDependencyScope.cs" />
+    <Compile Include="IDependencySwapper.cs" />
+    <Compile Include="IInvalidCallFilter.cs" />
+    <Compile Include="IMethodBuilder.cs" />
+    <Compile Include="IMethodContext.cs" />
+    <Compile Include="IMethodFilter.cs" />
+    <Compile Include="IMethodFinder.cs" />
+    <Compile Include="InjectAdapterAsParameter.cs" />
+    <Compile Include="InjectInterfaceMethodCall.cs" />
+    <Compile Include="InvalidCallFilter.cs" />
+    <Compile Include="InvokedMethodFilter.cs" />
+    <Compile Include="IReplaceMethodBody.cs" />
+    <Compile Include="IReplaceMethodCall.cs" />
+    <Compile Include="ITypeBuilder.cs" />
+    <Compile Include="MethodContext.cs" />
+    <Compile Include="MethodFinder.cs" />
+    <Compile Include="ModuleScope.cs" />
+    <Compile Include="ParameterContext.cs" />
+    <Compile Include="PopMethodArguments.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="PushMethodArguments.cs" />
+    <Compile Include="PushParameterOntoArgumentStack.cs" />
+    <Compile Include="ReplaceMethodCalls.cs" />
+    <Compile Include="SwapEmbeddedMethodTypeReferences.cs" />
+    <Compile Include="SwapFieldReferences.cs" />
+    <Compile Include="SwapLocalVariableReferences.cs" />
+    <Compile Include="SwapMethodCalls.cs" />
+    <Compile Include="SwapMethodReturnTypes.cs" />
+    <Compile Include="TypeScope.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SampleLibrary\SampleLibrary.csproj">
+      <Project>{7C13E654-827C-4804-B150-2F66524B8B47}</Project>
+      <Name>SampleLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
