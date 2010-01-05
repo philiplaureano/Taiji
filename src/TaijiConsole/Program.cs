@@ -8,8 +8,10 @@ using LinFu.Reflection.Emit;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 using SampleLibrary;
+using Taiji.Yang;
+using Taiji.Yin;
 
-namespace TaijiConsole
+namespace Taiji
 {
     // Step 1: Determine the class that needs to be modified
     // Step 2: Determine which class constructor needs to be modified
@@ -29,7 +31,6 @@ namespace TaijiConsole
             var targetAssembly = AssemblyFactory.GetAssembly("SampleLibrary.dll");
             var module = targetAssembly.MainModule;
 
-
             //var scope = new TypeScope(targetType);
             IDependencyScope scope = new ModuleScope(module);
 
@@ -47,52 +48,52 @@ namespace TaijiConsole
         private static void ExtractInterfaces(ModuleDefinition module, TypeDefinition targetDependency, TypeDefinition targetType, IDependencyScope scope)
         {
 
-            var methodMap = new Dictionary<MethodReference, MethodReference>();
+            //var methodMap = new Dictionary<MethodReference, MethodReference>();
 
-            var interfaceName = string.Format("I{0}", targetDependency.Name);
-            var namespaceName = targetType.Namespace;
+            //var interfaceName = string.Format("I{0}", targetDependency.Name);
+            //var namespaceName = targetType.Namespace;
 
-            var methodFinder = new MethodFinder();
-            var methodFilter = new InvokedMethodFilter();
-            var addInterfaceMethod = new AddInterfaceMethod();
-            var addAdapterMethod = new AddAdapterMethod();
-            var injectAdapterAsParameter = new InjectAdapterAsParameter();
-            var callFilter = new InvalidCallFilter();
-            var popMethodArguments = new PopMethodArguments();
+            //var methodFinder = new MethodFinder();
+            //var methodFilter = new InvokedMethodFilter();
+            //var addInterfaceMethod = new AddInterfaceMethod();
+            //var addAdapterMethod = new AddAdapterMethod();
+            //var injectAdapterAsParameter = new InjectAdapterAsParameter();
+            //var callFilter = new InvalidCallFilter();
+            //var popMethodArguments = new PopMethodArguments();
 
-            var methodBuilder = new AddInterfaceMethodIfMethodNotFound(methodFinder, addInterfaceMethod, methodMap);
-            var createInterfaceType = new CreateInterfaceType(methodFilter,
-                methodBuilder,
-                scope,
-                targetDependency,
-                module);
-            var interfaceType = createInterfaceType.CreateType(interfaceName,
-                                                          namespaceName,
-                                                          methodMap);
+            //var methodBuilder = new AddInterfaceMethodIfMethodNotFound(methodFinder, addInterfaceMethod);
+            //var createInterfaceType = new CreateInterfaceType(methodFilter,
+            //    methodBuilder,
+            //    scope,
+            //    targetDependency,
+            //    module);
+            //var interfaceType = createInterfaceType.CreateType(interfaceName,
+            //                                              namespaceName,
+            //                                              methodMap);
 
-            var modifiedMethods = new HashSet<MethodReference>();
-            var modifiedConstructors = new HashSet<MethodReference>();
+            //var modifiedMethods = new HashSet<MethodReference>();
+            //var modifiedConstructors = new HashSet<MethodReference>();
 
-            var extractor = new DependencyExtractor(interfaceType, methodMap, modifiedMethods, modifiedConstructors);
-            extractor.Extract(targetDependency, targetType.Module, scope);
+            //var extractor = new DependencyExtractor(interfaceType, methodMap, modifiedMethods, modifiedConstructors);
+            //extractor.Extract(targetDependency, targetType.Module, scope);
 
-            //// Step 9: Create an adapter that maps the calls back to the interface 
+            ////// Step 9: Create an adapter that maps the calls back to the interface 
+
+            //var extractionContext = new ExtractionContext(interfaceType, targetDependency, methodMap);
+            //var addAdapterConstructor = new AddAdapterConstructor(extractionContext);
+            //var createAdapterType = new CreateAdapterType(module, targetDependency, interfaceType, addAdapterConstructor, addAdapterMethod);
+            //var adapterBuilder = new AdapterBuilder(extractionContext);
             
-            var addAdapterConstructor = new AddAdapterConstructor(targetDependency);
-            var createAdapterType = new CreateAdapterType(module, targetDependency, interfaceType, addAdapterConstructor, addAdapterMethod);
-            var adapterBuilder = new AdapterBuilder(interfaceType, targetDependency, createAdapterType);
+            //var pushParameter = new PushParameterOntoArgumentStack(injectAdapterAsParameter);
+            //var pushMethodArguments = new PushMethodArguments(adapterBuilder, pushParameter, new ExtractionContext(interfaceType, targetDependency, methodMap));
             
-            var pushParameter = new PushParameterOntoArgumentStack(injectAdapterAsParameter);
-            var pushMethodArguments = new PushMethodArguments(adapterBuilder, pushParameter, interfaceType, targetDependency,
-                                                              methodMap);
-            
-            var replaceMethodCall = new InjectInterfaceMethodCall(pushMethodArguments, popMethodArguments);
-            var replaceMethodBody = new ReplaceMethodCalls(module, replaceMethodCall, callFilter);
+            //var replaceMethodCall = new InjectInterfaceMethodCall(pushMethodArguments, popMethodArguments);
+            //var replaceMethodBody = new ReplaceMethodCalls(module, replaceMethodCall, callFilter);
 
 
-            var updater = new DependencyUpdater(replaceMethodBody);
-            //// Step 10: Scan the rest of the assembly and create an instance of the adapter at each method call site
-            updater.UpdateAffectedMethods(scope.Methods, modifiedConstructors, methodMap);
+            //var updater = new DependencyUpdater(replaceMethodBody);
+            ////// Step 10: Scan the rest of the assembly and create an instance of the adapter at each method call site
+            //updater.UpdateAffectedMethods(scope.Methods, modifiedConstructors, methodMap);
         }
 
         private static TypeDefinition GetTargetType(ModuleDefinition module, Func<TypeReference, bool> typePredicate)

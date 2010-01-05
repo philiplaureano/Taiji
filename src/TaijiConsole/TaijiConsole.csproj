@@ -52,57 +52,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdapterBuilder.cs" />
-    <Compile Include="AddAdapterConstructor.cs" />
-    <Compile Include="AddAdapterMethod.cs" />
-    <Compile Include="AddInterfaceMethod.cs" />
-    <Compile Include="AddInterfaceMethodIfMethodNotFound.cs" />
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="BaseDependencyScope.cs" />
-    <Compile Include="CreateAdapterType.cs" />
-    <Compile Include="CreateInterfaceType.cs" />
-    <Compile Include="DependencyExtractor.cs" />
-    <Compile Include="DependencyScope.cs" />
-    <Compile Include="DependencyUpdater.cs" />
-    <Compile Include="EnumerableExtensions.cs" />
-    <Compile Include="IAdapterBuilder.cs" />
-    <Compile Include="IAdaptParameter.cs" />
-    <Compile Include="IAddAdapterConstructor.cs" />
-    <Compile Include="IAddAdapterMethod.cs" />
-    <Compile Include="IDependencyScope.cs" />
-    <Compile Include="IDependencySwapper.cs" />
-    <Compile Include="IInvalidCallFilter.cs" />
-    <Compile Include="IMethodBuilder.cs" />
-    <Compile Include="IMethodContext.cs" />
-    <Compile Include="IMethodFilter.cs" />
-    <Compile Include="IMethodFinder.cs" />
-    <Compile Include="InjectAdapterAsParameter.cs" />
-    <Compile Include="InjectInterfaceMethodCall.cs" />
-    <Compile Include="InvalidCallFilter.cs" />
-    <Compile Include="InvokedMethodFilter.cs" />
-    <Compile Include="IReplaceMethodBody.cs" />
-    <Compile Include="IReplaceMethodCall.cs" />
-    <Compile Include="ITypeBuilder.cs" />
-    <Compile Include="MethodContext.cs" />
-    <Compile Include="MethodFinder.cs" />
-    <Compile Include="ModuleScope.cs" />
-    <Compile Include="ParameterContext.cs" />
-    <Compile Include="PopMethodArguments.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="PushMethodArguments.cs" />
-    <Compile Include="PushParameterOntoArgumentStack.cs" />
-    <Compile Include="ReplaceMethodCalls.cs" />
-    <Compile Include="SwapEmbeddedMethodTypeReferences.cs" />
-    <Compile Include="SwapFieldReferences.cs" />
-    <Compile Include="SwapLocalVariableReferences.cs" />
-    <Compile Include="SwapMethodCalls.cs" />
-    <Compile Include="SwapMethodReturnTypes.cs" />
-    <Compile Include="TypeScope.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SampleLibrary\SampleLibrary.csproj">
       <Project>{7C13E654-827C-4804-B150-2F66524B8B47}</Project>
       <Name>SampleLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Taiji.Interfaces\Taiji.Interfaces.csproj">
+      <Project>{89515884-9C96-47C2-BD63-18F938E08581}</Project>
+      <Name>Taiji.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yang\Yang.csproj">
+      <Project>{0139C78B-307F-42B5-AC3D-4D3D41512CA9}</Project>
+      <Name>Yang</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Yin\Yin.csproj">
+      <Project>{575177BC-F978-4906-8118-1F11F03BFB1B}</Project>
+      <Name>Yin</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

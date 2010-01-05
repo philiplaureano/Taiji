@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5BBA3A68-7A97-4EBE-9289-C2E1EDC189B6}</ProjectGuid>
+    <ProjectGuid>{89515884-9C96-47C2-BD63-18F938E08581}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Taiji.UnitTests</RootNamespace>
-    <AssemblyName>Taiji.UnitTests</AssemblyName>
+    <RootNamespace>Taiji</RootNamespace>
+    <AssemblyName>Taiji.Interfaces</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,54 +30,44 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AutomatedDebug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\..\build\Debug\UnitTests\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="LinFu.Core, Version=2.2.0.41242, Culture=neutral, PublicKeyToken=a4c63a184389506f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\LinFu.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Moq, Version=2.0.2991.26580, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\Moq.dll</HintPath>
-    </Reference>
-    <Reference Include="NUnit.framework">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\NUnit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="ServiceAvailabilityTests.cs" />
+    <Compile Include="IAdapterBuilder.cs" />
+    <Compile Include="IAdaptParameter.cs" />
+    <Compile Include="IAddAdapterConstructor.cs" />
+    <Compile Include="IAddAdapterMethod.cs" />
+    <Compile Include="IDependencyScope.cs" />
+    <Compile Include="IDependencySwapper.cs" />
+    <Compile Include="IExtractionContext.cs" />
+    <Compile Include="IInvalidCallFilter.cs" />
+    <Compile Include="IMethodBuilder.cs" />
+    <Compile Include="IMethodContext.cs" />
+    <Compile Include="IMethodFilter.cs" />
+    <Compile Include="IMethodFinder.cs" />
+    <Compile Include="IParameterContext.cs" />
+    <Compile Include="IReplaceMethodBody.cs" />
+    <Compile Include="IReplaceMethodCall.cs" />
+    <Compile Include="ITypeBuilder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Taiji.Interfaces\Taiji.Interfaces.csproj">
-      <Project>{89515884-9C96-47C2-BD63-18F938E08581}</Project>
-      <Name>Taiji.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Yang\Yang.csproj">
-      <Project>{0139C78B-307F-42B5-AC3D-4D3D41512CA9}</Project>
-      <Name>Yang</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Yin\Yin.csproj">
-      <Project>{575177BC-F978-4906-8118-1F11F03BFB1B}</Project>
-      <Name>Yin</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
